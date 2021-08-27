@@ -3,7 +3,7 @@ plugins {
     id 'jacoco'
     id 'checkstyle'
     id 'pmd'
-    id 'nebula.lint' version '16.8.0'
+    id 'nebula.lint' version '17.1.1'
 }
 sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
@@ -13,11 +13,11 @@ gradleLint {
 }
 
 repositories {
-    jcenter()
+    mavenCentral()
 }
 
-def junit5Version = '5.6.2'
-def cucumberVersion = '6.0.0'
+def junit5Version = '5.7.2'
+def cucumberVersion = '6.11.0'
 
 dependencies {
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: junit5Version
@@ -38,7 +38,7 @@ test {
 
 jacocoTestReport {
     reports {
-        xml.enabled true
+        xml.required
     }
 }
 
@@ -55,8 +55,8 @@ checkstyle {
 
 tasks.withType(Checkstyle) {
     reports {
-        xml.enabled false
-        html.enabled true
+        xml.required
+        html.required
         html.stylesheet rootProject.resources.text.fromFile('config/checkstyle/checkstyle-simple.xsl')
     }
 }
